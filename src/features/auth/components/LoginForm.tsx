@@ -11,7 +11,6 @@ import { roleMeta } from "@/config/roles";
 import { UserRole } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
     Select,
     SelectContent,
@@ -39,7 +38,7 @@ export function LoginForm() {
         defaultValues: {
             email: "",
             password: "",
-            role: undefined,
+            role: "", // ✅ FIXED (no undefined)
         },
     });
 
@@ -76,12 +75,18 @@ export function LoginForm() {
                             <FormLabel className="text-sm font-medium text-foreground/80">
                                 Sign in as
                             </FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+
+                            {/* ✅ FULL FIX */}
+                            <Select
+                                value={field.value || ""}
+                                onValueChange={field.onChange}
+                            >
                                 <FormControl>
                                     <SelectTrigger className="h-11 bg-background border-border/60 focus:border-primary/50">
                                         <SelectValue placeholder="Select your role..." />
                                     </SelectTrigger>
                                 </FormControl>
+
                                 <SelectContent>
                                     {Object.values(UserRole).map((role) => {
                                         const meta = roleMeta[role];
@@ -97,6 +102,7 @@ export function LoginForm() {
                                     })}
                                 </SelectContent>
                             </Select>
+
                             <FormMessage />
                         </FormItem>
                     )}

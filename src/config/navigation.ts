@@ -2,7 +2,6 @@ import {
     LayoutDashboard,
     Users,
     Building2,
-    Stethoscope,
     CalendarDays,
     ClipboardList,
     Heart,
@@ -10,14 +9,21 @@ import {
     ScanLine,
     Pill,
     Receipt,
-    BrainCircuit,
     UserCog,
     BedDouble,
     FileText,
     Activity,
     Settings,
+
+    // ✅ NEW ICONS FOR BILLING
+    CreditCard,
+    AlertCircle,
+    BarChart3,
+    PieChart,
+
     type LucideIcon,
 } from "lucide-react";
+
 import { UserRole } from "@/types";
 
 export interface NavItem {
@@ -33,6 +39,8 @@ export interface NavSection {
 }
 
 export const roleNavigation: Record<UserRole, NavSection[]> = {
+
+    // ================= ADMIN =================
     [UserRole.ADMIN]: [
         {
             label: "Overview",
@@ -45,11 +53,22 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
             items: [
                 { title: "Users", href: "/admin/users", icon: Users },
                 { title: "Departments", href: "/admin/departments", icon: Building2 },
+                { title: "Roles", href: "/admin/roles", icon: UserCog },
+                { title: "Wards", href: "/admin/wards", icon: BedDouble },
+                { title: "Beds", href: "/admin/beds", icon: BedDouble },
+                { title: "Services", href: "/admin/services", icon: Activity },
+                { title: "Audit Logs", href: "/admin/audit", icon: FileText },
+            ],
+        },
+        {
+            label: "System",
+            items: [
                 { title: "Settings", href: "/admin/settings", icon: Settings },
             ],
         },
     ],
 
+    // ================= DOCTOR =================
     [UserRole.DOCTOR]: [
         {
             label: "Overview",
@@ -80,6 +99,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
+    // ================= PATIENT =================
     [UserRole.PATIENT]: [
         {
             label: "Overview",
@@ -98,6 +118,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
+    // ================= NURSE =================
     [UserRole.NURSE]: [
         {
             label: "Overview",
@@ -110,7 +131,11 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
             items: [
                 { title: "Ward Census", href: "/nurse/ward", icon: BedDouble },
                 { title: "Vitals Flowsheet", href: "/nurse/vitals", icon: Heart },
+                { title: "Intake & Output", href: "/nurse/io", icon: Activity },
+                { title: "Pain Assessment", href: "/nurse/pain", icon: Heart },
+                { title: "Wound Notes", href: "/nurse/wound", icon: FileText },
                 { title: "Med Admin", href: "/nurse/medications", icon: Pill },
+                { title: "Tasks", href: "/nurse/tasks", icon: ClipboardList },
             ],
         },
         {
@@ -123,6 +148,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
+    // ================= LAB =================
     [UserRole.LAB_TECH]: [
         {
             label: "Overview",
@@ -149,6 +175,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
+    // ================= RADIOLOGY =================
     [UserRole.RADIOLOGIST]: [
         {
             label: "Overview",
@@ -165,6 +192,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
+    // ================= PHARMACY =================
     [UserRole.PHARMACIST]: [
         {
             label: "Overview",
@@ -190,22 +218,34 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
         },
     ],
 
-    [UserRole.BILLING_STAFF]: [
-        {
-            label: "Overview",
-            items: [
-                { title: "Dashboard", href: "/billing", icon: LayoutDashboard },
-            ],
-        },
-        {
-            label: "Revenue",
-            items: [
-                { title: "Invoices", href: "/billing/invoices", icon: Receipt },
-                { title: "Claims", href: "/billing/claims", icon: FileText },
-            ],
-        },
-    ],
+    // ================= BILLING =================
+[UserRole.BILLING_STAFF]: [
+    {
+        label: "Overview",
+        items: [
+            { title: "Dashboard", href: "/billing", icon: LayoutDashboard },
+        ],
+    },
+    {
+        label: "Revenue",
+        items: [
+            { title: "Invoices", href: "/billing/invoices", icon: Receipt },
+            { title: "Claims", href: "/billing/claims", icon: FileText },
 
+            { title: "Payments", href: "/billing/payments", icon: CreditCard },
+
+            { title: "Denials", href: "/billing/denials", icon: AlertCircle },
+
+            // ✅ الجديد (Patient Accounts)
+            { title: "Patients", href: "/billing/patients", icon: Users },
+
+            { title: "Accounts Timeline", href: "/billing/accounts", icon: BarChart3 },
+
+            { title: "Stats", href: "/billing/stats", icon: PieChart },
+        ],
+    },
+],
+    // ================= FRONT DESK =================
     [UserRole.FRONT_DESK]: [
         {
             label: "Overview",
