@@ -55,7 +55,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
                 { title: "Departments", href: "/admin/departments", icon: Building2 },
                 { title: "Roles", href: "/admin/roles", icon: UserCog },
                 { title: "Wards", href: "/admin/wards", icon: BedDouble },
-                { title: "Beds", href: "/admin/beds", icon: BedDouble },
+        
                 { title: "Services", href: "/admin/services", icon: Activity },
                 { title: "Audit Logs", href: "/admin/audit", icon: FileText },
             ],
@@ -236,7 +236,7 @@ export const roleNavigation: Record<UserRole, NavSection[]> = {
 
             { title: "Denials", href: "/billing/denials", icon: AlertCircle },
 
-            // ✅ الجديد (Patient Accounts)
+           
             { title: "Patients", href: "/billing/patients", icon: Users },
 
             { title: "Accounts Timeline", href: "/billing/accounts", icon: BarChart3 },
